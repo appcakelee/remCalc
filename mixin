@@ -14,7 +14,6 @@
     @else {
       // if value is 0 or auto output as is
       $pixels: #{$pixels + " " + $value};
-      $rems: #{$rems + " " + $value};
     }
 
   }
@@ -27,6 +26,9 @@
 
   //Finally Output the values
   #{$property}: $pixels;
-  #{$property}: $rems;
+  @if $sizeValues != 0 and $sizeValues != auto and $sizeValues != inherit {
+    //if statement to only output rem value if there is a numeric value to output - avoiding duplication
+    #{$property}: $rems;
+  }
 
 }
